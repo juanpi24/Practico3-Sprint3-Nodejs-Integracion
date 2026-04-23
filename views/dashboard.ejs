@@ -1,0 +1,35 @@
+<!-- Incluir el partial header aquí -->
+<%- include("../views/partials/header", { titulo: "Dashboard" }) %>
+
+<div class="text-end mb-3">
+  <a href="/heroes/agregar" class="btn btn-success">➕ Nuevo</a>
+</div>
+
+<table class="table table-dark table-hover text-center align-middle shadow">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Edad</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% heroes.forEach(hero => { %>
+    <tr>
+      <td><%= hero.nombreSuperHeroe %></td>
+      <td><%= hero.edad %></td>
+      <td>
+        <a class="btn btn-info btn-sm" href="/heroes/<%= hero._id %>">Ver</a>
+        <a class="btn btn-warning btn-sm" href="/heroes/editar/<%= hero._id %>">Editar</a>
+        <form action="/heroes/eliminar/<%= hero._id %>" method="GET"     style="display:inline;" onsubmit="return confirmarEliminacion(event)">
+         <button class="btn btn-danger btn-sm">Eliminar</button>
+        </form>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<!-- Incluir el partial footer aquí -->
+<%- include("../views/partials/footer") %>

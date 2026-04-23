@@ -1,0 +1,24 @@
+Ejemplo POST y PUT con error (para probar validaciones)
+-------------------------------------------------
+{
+  "nombreSuperHeroe": "Sp",
+  "nombreReal":"",
+  "edad": -1,
+  "poderes": ["x"]
+}
+
+
+Respuesta esperada:
+-------------------
+
+{
+  "errores": [
+    { "msg": "Debe tener entre 3 y 60 caracteres", "path": "nombreSuperheroe" },
+    { "msg": "Debe tener entre 3 y 60 caracteres", "path": "nombreReal" },
+    { "msg": "Debe ser un número entero mayor o igual a 0", "path": "edad" },
+    { "msg": "Cada poder debe tener entre 3 y 60 caracteres", "path": "poderes[0]" }
+  ]
+}
+
+
+
