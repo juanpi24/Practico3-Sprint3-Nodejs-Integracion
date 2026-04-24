@@ -6,24 +6,115 @@
   
       <form action="/heroes/agregar" method="POST" class="card p-4 needs-validation">
         
-          <input class="form-control mb-2" type="text" name="nombreSuperHeroe" placeholder="Nombre" required>
-        
-          <input class="form-control mb-2" type="text" name="nombreReal" placeholder="Nombre Real" required>
-        
-          <input class="form-control mb-2" type="number" name="edad" placeholder="Edad" required>
-            
-          <input class="form-control mb-2" type="text" name="planetaOrigen" placeholder="Planeta de Orígen" required>
-        
-          <input class="form-control mb-2" type="text" name="debilidad" placeholder="Debilidad" required>
-                    
-        <!--CONSULTAR PARA GUARDAR VARIOS ELEMENTOS EN EL ARRAY-->
-         <input class="form-control mb-2" name="poderes[]" placeholder="Poderes" required>
-        
-          <input class="form-control mb-2" name="aliados[]" placeholder="Aliados" required>
-      
-          <input class="form-control mb-2" name="enemigos[]" placeholder="Enemigos" required>
-        
-          <input class="form-control mb-2" type="text" name="creator" placeholder="Creador" required>
+          <!-- Nombre -->
+    <div class="mb-3">
+        <label class="form-label">Nombre del superhéroe</label>
+        <input 
+            type="text" 
+            name="nombreSuperHeroe" 
+            class="form-control" 
+            value="<%= hero?.nombreSuperHeroe || '' %>"
+            required
+        >
+    </div>
+
+    <!-- Nombre real -->
+    <div class="mb-3">
+        <label class="form-label">Nombre real</label>
+        <input 
+            type="text" 
+            name="nombreReal" 
+            class="form-control" 
+            value="<%= hero?.nombreReal || '' %>"
+            required
+        >
+    </div>
+
+    <!-- Edad -->
+    <div class="mb-3">
+        <label class="form-label">Edad</label>
+        <input 
+            type="number" 
+            name="edad" 
+            class="form-control" 
+            value="<%= hero?.edad || '' %>"
+            required
+        >
+    </div>
+
+    <!-- Planeta -->
+    <div class="mb-3">
+        <label class="form-label">Planeta de origen</label>
+        <input 
+            type="text" 
+            name="planetaOrigen" 
+            class="form-control" 
+            value="<%= hero?.planetaOrigen || '' %>"
+            required
+        >
+    </div>
+
+    <!-- Debilidad -->
+    <div class="mb-3">
+        <label class="form-label">Debilidad</label>
+        <input 
+            type="text" 
+            name="debilidad" 
+            class="form-control" 
+            value="<%= hero?.debilidad || '' %>"
+            required
+        >
+    </div>
+
+    <!-- Poderes (array simple) -->
+    <div class="mb-3">
+        <label class="form-label">Poderes</label>
+        <input 
+            type="text" 
+            name="poderes[]" 
+            class="form-control" 
+            value="<%= hero?.poderes || '' %>"
+            required
+        >
+    </div>
+
+    <!-- Aliados (array simple) -->
+    <div class="mb-3">
+        <label class="form-label">Aliados</label>
+        <input 
+            type="text" 
+            name="aliados[]" 
+            class="form-control" 
+            value="<%= hero?.aliados || '' %>"
+            required
+        >
+    </div>
+
+    <!-- Enemigos (array simple) -->
+    <div class="mb-3">
+        <label class="form-label">Enemigos</label>
+        <input 
+            type="text" 
+            name="enemigos[]" 
+            class="form-control" 
+            value="<%= hero?.enemigos || '' %>"
+            required
+        >
+    </div>
+
+    <!-- Creador -->
+    <div class="mb-3">
+        <label class="form-label">Creador</label>
+        <input 
+            type="text" 
+            name="creator" 
+            class="form-control" 
+            value="<%= hero?.creator || '' %>"
+            required
+        >
+    </div>
+
+    
       
         <div class="text-center mt-4">
           <button class="btn btn-success">Guardar</button>
