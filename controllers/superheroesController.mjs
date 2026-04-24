@@ -46,10 +46,15 @@ export async function verSuperheroeController (req, res) {
   }
 };
 
+//Para usar un formulario reutilizable
+// export const mostrarFormGeneral = (req, res) => {
+//   res.render("formGeneral"); 
+// };
+
 
 // Mostrar formulario Agregar (error de no enviar datos al abrir el formulario)
 export const mostrarFormularioAgregar = (req, res) => {
-  res.render("addSuperhero", { errores: [], datos: {}}); 
+  res.render("addSuperhero", { errores: [], hero: {}}); 
 };
 
 // Agregar a la BD
@@ -97,18 +102,19 @@ export async function mostrarFormularioEditar (req, res) {
 export async function actualizarSuperheroeController(req, res) {
       
   try {       const idHeroe= req.params.id;
-              const datosActualizados= req.body;
+              const nuevosDatos= req.body;
          
         // // Si los poderes vienen como string "Volar, Fuerza"
-        //   if (typeof datos.poderes === 'string') {
-        //      datos.poderes = datos.poderes
-        //     .split(',')           // Divide por la coma -> ['Volar', ' Fuerza']
-        //     .map(p => p.trim())   // Quita espacios -> ['Volar', 'Fuerza']
-        //     .filter(p => p !== ''); // Elimina elementos vacíos
-        //   }
-      // Ahora 'datos.poderes' es un Array listo para Mongoose
-       const actualizado= await actualizarSuperheroes(idHeroe,datosActualizados);
+          // if (typeof req.body.poderes === "string") {
+          //    req.body.poderes = req.body.poderes
+          //          .split(',')
+          //          .map(p => p.trim());
+          //   }
 
+      // Ahora 'datos.poderes' es un Array listo para Mongoose
+
+       const actualizado= await actualizarSuperheroes(idHeroe,nuevosDatos);
+       console.log(`IdActual: ${actualizado.edad}, IdNuevo:${nuevosDatos.edad}`);
        if (!actualizado) {
             req.session.mensaje = {
                 tipo: "error",
