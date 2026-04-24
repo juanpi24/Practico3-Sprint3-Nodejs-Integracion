@@ -16,9 +16,12 @@ import {
     eliminarSuperheroePorIDController
 } from '../controllers/superheroesController.mjs';
 
-// Importar este middleware y lo colocamos en la ruta POST
+// Middleware validaciones - lo colocamos en la ruta POST
 import {validar} from '../middlewares/validationMiddleware.mjs'
 import {reglasValidacion} from '../validations/heroValidation.mjs';
+
+// // Middleware nnormalizar Array
+import{normalizarPoderes, normalizarAliados, normalizarEnemigos} from '../middlewares/normalizarArrayMiddleware.mjs';
 
 
 // Mostrar todos los Superhéroes
@@ -30,6 +33,9 @@ router.get("/agregar", mostrarFormularioAgregar);
 // Agregar - Validaciones + POST
 router.post(
     '/agregar', 
+    normalizarPoderes,
+    normalizarAliados,
+    normalizarEnemigos,
     reglasValidacion,   // 👈 mis reglas
     validar("addSuperhero"), // 👈 misma vista
     agregarSuperheroeController); 
@@ -40,6 +46,9 @@ router.get("/editar/:id", mostrarFormularioEditar);
 // Editar - Validaciones + POST 
 router.post(
     '/editarhero/:id', 
+    normalizarPoderes,
+    normalizarAliados,
+    normalizarEnemigos,
     reglasValidacion, // 👈 mis reglas
     validar("editSuperhero"),  // 👈 misma vista 
     actualizarSuperheroeController);
