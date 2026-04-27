@@ -104,14 +104,13 @@ export async function actualizarSuperheroeController(req, res) {
   try {       const idHeroe= req.params.id;
               const nuevosDatos= req.body;
          
-        // // Si los poderes vienen como string "Volar, Fuerza"
-          // if (typeof req.body.poderes === "string") {
-          //    req.body.poderes = req.body.poderes
-          //          .split(',')
-          //          .map(p => p.trim());
-          //   }
-
-      // Ahora 'datos.poderes' es un Array listo para Mongoose
+        // // Convertir string a array
+        //   if (typeof req.body.poderes === "string") {
+        //     req.body.poderes = req.body.poderes
+        //       .split(',')
+        //       .map(p => p.trim())
+        //       .filter(p => p); // elimina vacíos
+        //   }
 
        const actualizado= await actualizarSuperheroes(idHeroe,nuevosDatos);
        console.log(`IdActual: ${actualizado.edad}, IdNuevo:${nuevosDatos.edad}`);
