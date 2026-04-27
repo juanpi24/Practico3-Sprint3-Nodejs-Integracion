@@ -21,7 +21,8 @@ import {validar} from '../middlewares/validationMiddleware.mjs'
 import {reglasValidacion} from '../validations/heroValidation.mjs';
 
 // // Middleware nnormalizar Array
-import{normalizarPoderes, normalizarAliados, normalizarEnemigos} from '../middlewares/normalizarArrayMiddleware.mjs';
+//import{normalizarPoderes, normalizarAliados, normalizarEnemigos} from '../middlewares/normalizarArrayMiddleware.mjs';
+import { normalizarArrays } from "../middlewares/normalizarArrayMiddleware.mjs"
 
 
 // Mostrar todos los Superhéroes
@@ -33,9 +34,10 @@ router.get("/agregar", mostrarFormularioAgregar);
 // Agregar - Validaciones + POST
 router.post(
     '/agregar', 
-    normalizarPoderes,
-    normalizarAliados,
-    normalizarEnemigos,
+     //normalizarPoderes,
+     //normalizarAliados,
+     //normalizarEnemigos,
+    normalizarArrays(["poderes", "aliados", "enemigos"]),
     reglasValidacion,   // 👈 mis reglas
     validar("addSuperhero"), // 👈 misma vista
     agregarSuperheroeController); 
@@ -46,9 +48,10 @@ router.get("/editar/:id", mostrarFormularioEditar);
 // Editar - Validaciones + POST 
 router.post(
     '/editarhero/:id', 
-    normalizarPoderes,
-    normalizarAliados,
-    normalizarEnemigos,
+     //normalizarPoderes,
+     //normalizarAliados,
+     //normalizarEnemigos,
+    normalizarArrays(["poderes", "aliados", "enemigos"]),
     reglasValidacion, // 👈 mis reglas
     validar("editSuperhero"),  // 👈 misma vista 
     actualizarSuperheroeController);
