@@ -1,6 +1,11 @@
 # Practico3-Sprint3-Nodejs - Integración
 Este practico se enfoca en desarrollar un dashboard dinámico para gestionar una lista de superhéroes, permitiendo agregar, editar y eliminar superhéroes. El trabajo se dividirá en etapas para facilitar su implementación y aprendizaje.
-Para desarrollar el practico 3 deben completar la lista de tareas.
+---
+## 🚀 Deploy online (Render)
+* [🌎 Dashboard Superhéroes ](https://superheroes-app-srp9.onrender.com/heroes)
+
+---
+***Para desarrollar el practico 3 deben completar la lista de tareas.***
 ***
 **Etapa 1: Configuración y Revisión de la Estructura Inicial del Proyecto**
 
