@@ -1,75 +1,110 @@
-# Practico3-Sprint3-Nodejs - Integración
+# Práctico 3 - Sprint 3: Integración de Node.js, Express y MongoDB
+
+Este proyecto corresponde al **Sprint 3 (Trabajo Práctico 3)** de la aplicación de gestión de superhéroes. Implementa la integración completa entre **Node.js**, **Express**, **MongoDB** (con Mongoose) y motor de plantillas **EJS**, permitiendo operaciones CRUD dinámicas (creación, lectura, edición y eliminación de superhéroes) junto con validación de datos del lado del servidor.
+
 ---
-Este practico se enfoca en desarrollar un dashboard dinámico para gestionar una lista de superhéroes, permitiendo agregar, editar y eliminar superhéroes. El trabajo se dividirá en etapas para facilitar su implementación y aprendizaje.
+
+## 🚀 Características Principales
+
+* **Arquitectura Capas:** Organización modular siguiendo la estructura de *Rutas, Controladores, Servicios, Repositorios y Modelos*.
+* **Persistencia de Datos:** Integración con MongoDB mediante **Mongoose** para el modelado y almacenamiento de documentos.
+* **Interfaz Dinámica:** Renderizado de vistas del lado del servidor utilizando **EJS**.
+* **Operaciones CRUD Completas:**
+  * **Listado y Búsqueda:** Visualización de superhéroes con filtrado y búsqueda insensible a mayúsculas/minúsculas.
+  * **Alta de Superhéroes:** Formulario de registro dinámico.
+  * **Edición y Actualización:** Procesamiento de solicitudes HTTP `PUT` para la actualización de registros existentes.
+  * **Eliminación:** Borrado de superhéroes mediante peticiones HTTP `DELETE`.
+* **Validación de Datos:** Uso de `express-validator` para sanear y validar el cuerpo de las peticiones antes de interactuar con la base de datos.
+* **Manejo de Sesiones y Retroalimentación:** Gestión de mensajes de éxito o error en los formularios mediante sesiones (`express-session`).
+
 ---
+
+## 🛠️ Tecnologías Utilizadas
+
+* **Node.js** - Entorno de ejecución para JavaScript en el servidor.
+* **Express.js** - Framework web para Node.js.
+* **MongoDB** - Base de datos NoSQL basada en documentos.
+* **Mongoose** - ODM (Object Data Modeling) para MongoDB.
+* **EJS (Embedded JavaScript templates)** - Motor de plantillas para la generación de HTML dinámico.
+* **express-validator** - Middleware para validación y sanitización de entradas.
+* **express-session / connect-flash** - Manejo de estado y mensajería en vistas.
+
+---
+
+## 📋 Requisitos Previos
+
+Asegúrate de contar con lo siguiente instalado en tu entorno local:
+
+* [Node.js](https://nodejs.org/) (versión 18.x o superior recomendada)
+* [npm](https://www.npmjs.com/) (incluido con Node.js)
+* [MongoDB](https://www.mongodb.com/) en ejecución local o una URI de conexión a **MongoDB Atlas**.
+
+---
+
+## ⚙️ Instalación y Configuración
+
+1. **Clonar el repositorio:**
+   ```bash
+   git clone https://github.com/juanpi24/Practico3-Sprint3-Nodejs-Integracion.git
+   cd Practico3-Sprint3-Nodejs-Integracion
+   ```
+
+2. **Instalar las dependencias:**
+   ```bash
+   npm install
+   ```
+
+3. **Configurar las variables de entorno:**
+   Crea un archivo `.env` en la raíz del proyecto (puedes tomar como referencia `.env.example` si existe) y define las credenciales necesarias:
+   ```env
+   PORT=3000
+   MONGO_URI=mongodb://localhost:27017/superheroesDB
+   SESSION_SECRET=secreto_de_sesion
+   ```
+
+---
+
+## 🚦 Ejecución del Proyecto
+
+* **Modo de producción:**
+  ```bash
+  npm start
+  ```
+
+* **Modo de desarrollo (con recarga automática):**
+  ```bash
+  npm run dev
+  ```
+
+Una vez en ejecución, abre tu navegador e ingresa a: `http://localhost:3000`
+
+---
+
+## 📁 Estructura del Proyecto
+
+```text
+├── src/
+│   ├── config/          # Configuración de base de datos y variables
+│   ├── controllers/     # Lógica de procesamiento de peticiones HTTP
+│   ├── models/          # Esquemas y modelos de Mongoose
+│   ├── repositories/   # Capa de acceso directo a datos
+│   ├── routes/          # Definición de rutas Express
+│   ├── services/        # Lógica de negocio de la aplicación
+│   ├── validators/      # Middleware de validación (express-validator)
+│   └── views/           # Plantillas EJS para las vistas
+├── public/              # Archivos estáticos (CSS, imágenes, JS cliente)
+├── .env.example         # Ejemplo de variables de entorno
+├── app.js               # Punto de entrada de la aplicación Express
+├── package.json         # Dependencias y scripts del proyecto
+└── README.md            # Documentación del proyecto
+```
+
+---
+
+## 📝 Licencia
+
+Este proyecto se distribuye bajo la licencia **MIT**. Consulta el archivo `LICENSE` para más detalles.
+
 ## 🚀 Deploy online (Render)
 * [🌎 Dashboard Superhéroes ](https://superheroes-app-srp9.onrender.com/heroes)
 
----
-***Para desarrollar el practico 3 deben completar la lista de tareas.***
-***
-**Etapa 1: Configuración y Revisión de la Estructura Inicial del Proyecto**
-
-1) Revisión de la estructura del proyecto: Asegurarse de que comprendan el esquema de MVC, el archivo de configuración de base de datos (dbConfig.mjs) y cómo se organiza la capa de repositorio y servicios.
-
-2) Configuración de la base de datos: Configurar una base de datos MongoDB y asegurarse de que el archivo dbConfig.mjs esté correctamente configurado
-
-3) Ejecutar el servidor: Verificar la conexión a la base de datos y probar los endpoints de superhéroes existentes para asegurarse de que el proyecto base funcione sin problemas.
-
-**Etapa 2: Crear Plantillas Básicas en EJS**
-
-1) Configurar EJS: Modificar el archivo de configuración (app.mjs) para asegurarse de que EJS está configurado como el motor de vistas.
-
-2) Crear la vista principal del dashboard (views/dashboard.ejs): Mostrar la lista de superhéroes utilizando el endpoint /heroes.
-
-3) Integrar con el controlador: Modificar el superheroesController.mjs para renderizar dashboard.ejs al llamar a obtenerTodosLosSuperheroesController
-
-**Etapa 3: Implementar Función de Agregar Superhéroes**
-
-1) Crear formulario de agregar superhéroe (views/addSuperhero.ejs): Implementar un formulario con campos necesarios (nombreSuperheroe, nombreReal, edad, planetaOrigen, debilidad, etc.).
-
-2) Crear endpoint para el formulario:
-
-3) Definir una ruta POST /heroes/agregar en superheroesRoutes.mjs.
-
-4) Implementar en el controlador (superheroesController.mjs) un método agregarSuperheroeController, que llame al servicio para agregar un nuevo superhéroe.
-
-5) Agregar validación de datos: Validar los datos en el frontend y backend para asegurar que cumplen con el esquema y requerimientos
-
-**Etapa 4: Implementar Función de Editar Superhéroes**
-
-1) Crear la vista de edición (views/editSuperhero.ejs): Implementar un formulario similar al de agregar superhéroe, pero precargar los datos actuales del superhéroe.
-
-2) Crear endpoint para editar:
-
-3) Agregar una ruta PUT /heroes/:id/editar en superheroesRoutes.mjs.
-
-4) Implementar en superheroesController.mjs un método editarSuperheroeController que permita actualizar los datos del superhéroe llamando al método de edición en el servicio.
-
-5) Mostrar opción de editar: En la vista del dashboard, añadir un botón de edición para cada superhéroe que redirija a editSuperhero.ejs con los datos del superhéroe a modificar.
-
-**Etapa 5: Implementar Función de Eliminar Superhéroes**
-
-1) Añadir botón de eliminar en el dashboard: Incluir en dashboard.ejs un botón de eliminar para cada superhéroe.
-
-2) Crear endpoint para eliminar:
-
-3) Agregar una ruta DELETE /heroes/:id en superheroesRoutes.mjs.
-
-4) Crear eliminarSuperheroeController en superheroesController.mjs para que llame al servicio y elimine el superhéroe seleccionado.
-
-5) Confirmación de eliminación: Agregar una alerta de confirmación antes de eliminar el superhéroe para evitar eliminaciones accidentales.
-
-**Etapa 6: Integración de Vistas con Funcionalidades del Backend**
-
-1) Listar Superhéroes en el Dashboard. En el controlador (superheroesController.mjs), asegúrate de que obtenerTodosLosSuperheroesController renderiza dashboard.ejs y pasa la lista de superhéroes obtenida desde el servicio al archivo EJS. En dashboard.ejs, utiliza una estructura de bucle para mostrar cada superhéroe en una tabla o tarjeta. Incluye botones para editar y eliminar junto a cada superhéroe.
-
-2) Integración del Formulario de Agregar Superhéroe: Configura un formulario en addSuperhero.ejs que envíe los datos al endpoint /heroes/agregar utilizando un método POST. En el backend, verifica que agregarSuperheroeController recibe los datos y crea el nuevo superhéroe. Tras agregarlo, redirige de vuelta al dashboard para ver la lista actualizada.
-
-3) Integración del Formulario de Editar Superhéroe: Configura editSuperhero.ejs para cargar los datos actuales del superhéroe que se va a editar. Esto se hace al enviar una solicitud al backend para obtener el superhéroe por ID y precargar la información en el formulario. Asegúrate de que el formulario envíe los datos al endpoint PUT /heroes/:id/editar con un método POST o PUT. En el backend, el controlador editarSuperheroeController debe actualizar los datos del superhéroe en la base de datos. Tras editarlo, redirige al dashboard para ver los cambios reflejados.
-
-4) Integración de la Función de Eliminar Superhéroe: Configura el botón de eliminar en dashboard.ejs para que realice una solicitud DELETE al endpoint correspondiente (/heroes/:id). En el backend, verifica que eliminarSuperheroeController reciba la solicitud y elimine el superhéroe de la base de datos. Tras eliminarlo, recarga la lista en el dashboard.
-
-5) Refrescar el Dashboard Después de Cada Acción: Asegúrate de que, después de agregar, editar o eliminar un superhéroe, se redirija al usuario de nuevo al dashboard para ver los cambios.
-
-6) Diseño de interfaz: Personalizar dashboard.ejs, addSuperhero.ejs, y editSuperhero.ejs para mejorar la experiencia de usuario.
